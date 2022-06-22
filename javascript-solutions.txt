@@ -1,0 +1,106 @@
+Javascript Solutions 
+
+
+const numArr = [
+  {
+    number: 19,
+    room: 1
+  },
+  {
+    number: 92,
+    room: 2
+  },
+  {
+    number: 7,
+    room: 3
+  },
+  {
+    number: 7,
+    room: 3
+  },
+  {
+    number: 16,
+    room: 4
+  },
+  {
+    number: 16,
+    room: 4
+  }
+]
+
+console.log(numArr.sort((a,b) => {
+  return a.number - b.number
+}))
+
+console.log(numArr.filter((item,index) => index != numArr.map(num => num.number).indexOf(item.number)))
+
+console.log(numArr.filter(item => item.number+item.room > 10))
+
+var sum = 1;
+const resultant = [1]
+for(let i=2; i<1000; i++){
+  console.log(sum, i)
+  sum % i == 0 && resultant.push(i);
+  sum+=i
+}
+
+console.log(resultant)
+
+Recursion
+
+function factorial(num){
+  if(num == 1){
+    return 1
+  }
+  return num * factorial(num - 1)
+}
+
+console.log(factorial(3))
+
+Async Code 
+
+const myPromise = new Promise((resolve, reject) => {
+  resolve(2)
+})
+
+myPromise
+  .then(res => console.log(res))
+  .catch(err => console.log("Promise Rejected!"))
+
+
+const getData = async() => {
+  const result = await fetch('https://jsonplaceholder.typicode.com/todos/1')
+  return result
+}
+
+console.log(getData())
+
+Class
+
+const newFn = {
+  sayHi(){
+    console.log("Hello!!!!")
+  }
+}
+class Animal{
+  constructor(name){
+    this.name = name
+  }
+  static printName(sign){
+    console.log(`I am ${this.name} and I ${sign}`)
+  }
+}
+
+class Rabbit extends Animal{
+  makeSound(){
+    console.log("Keech Keech")
+  }
+}
+
+Object.assign(Animal.prototype, newFn)
+var one = new Animal("Lion")
+one.sayHi()
+Animal.printName("roare")
+var newAnimal = new Rabbit("Rabbit")
+Rabbit.printName("Make sound")
+newAnimal.makeSound()

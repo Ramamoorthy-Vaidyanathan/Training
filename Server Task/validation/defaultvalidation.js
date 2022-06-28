@@ -9,4 +9,9 @@ const addValidation = {
     num2: Joi.number().required()
 }
 
-module.exports = { paramsValidation, addValidation }
+const loginValidation = {
+    email: Joi.string().required(),
+    password: Joi.string().required()
+}
+
+module.exports = { paramsValidation, addValidation, loginValidation }

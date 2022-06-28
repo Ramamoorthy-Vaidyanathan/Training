@@ -1,5 +1,6 @@
 const { addController, basicGetController, paramsController } = require('../controllers/defaultcontroller')
-const { paramsValidation, addValidation} = require('../validation/defaultvalidation')
+const { addValidation } = require('../validation/defaultvalidation')
+
 
 
 module.exports = [

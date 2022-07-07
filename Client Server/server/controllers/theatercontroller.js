@@ -12,10 +12,10 @@ const postTheater = async (request, response) => {
         Theater = await Models.theater.create(payload)
     }
     Movie.addTheater(Theater);
-    const movieList = await Movie.getTheaters()
-    const theaterList = await Theater.getMovies()
-    console.log(movieList)
-    console.log(theaterList)
+    // const movieList = await Movie.getTheaters()
+    // const theaterList = await Theater.getMovies()
+    // console.log(movieList)
+    // console.log(theaterList)
     response(Theater);
 }
 

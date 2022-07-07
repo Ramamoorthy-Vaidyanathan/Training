@@ -1,0 +1,177 @@
+@import "constants.scss";
+
+body{
+    padding: 0px;
+    margin: 0px;
+    // background-color: rgba(255, 255, 255, 0.88);
+    background-color: rgba(245, 222, 179, 0.401);
+
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.app-wrapper{
+    border: 0.5px solid black;
+    padding: 10px 20px;
+    p{
+        color: gray;
+    }
+
+}
+
+@mixin base-input-style {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 20px;
+
+}
+
+input{
+    @include base-input-style();
+    background-color: $primary-bg
+
+}
+
+button{
+    @include base-input-style();
+    margin-left: 10%;
+    background-color: $primary-color;
+    color: $secondary-color;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-wrapper{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    p{
+        color: gray;
+    }
+    .form-inputs{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.form-side-wrapper{
+    background-color: $primary-color;
+    width: 30%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $secondary-color;
+    animation: getSideBar 1s;
+    button{
+        width: 40%;
+        color: $secondary-color;
+        border: 0.5px solid $secondary-color;
+        background-color: transparent;
+        text-transform: capitalize;
+    }
+}
+
+.form-side-wrapper-left{
+    @extend .form-side-wrapper;
+    animation: getLeftSideBar 1s;
+}
+
+
+
+.card-wrapper{
+    width: 15%;
+    // max-height: 25%;
+    // padding: 10px;
+    // margin-bottom: 10px;
+    // margin: 35px;
+    margin: 2.5%;
+
+    position: relative;
+    img{
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+    }
+    h3{
+        margin: 0;
+        padding: 5px;
+        font-size: 16px;
+    }
+    p{
+        margin: 0;
+        padding: 0px 5px;
+        font-size: 12px;
+        color: grey;
+    }
+}
+
+.icon-controll{
+    display: none;
+    justify-content: space-around;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.434);
+    bottom: 0;
+    color: $primary-color;
+    .icon{
+        font-size: 24px;
+        cursor: pointer;
+    }
+}
+
+.card-wrapper:hover > .icon-controll{
+    display: flex;
+}
+.card-wrapper:hover > img{
+    opacity: 0.8;
+}
+
+
+
+@keyframes getSideBar {
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@keyframes getLeftSideBar {
+    0%{
+        transform: translateX(-100%);
+    }
+    100%{
+        transform: translateX(0%);
+    }
+}
+
+@media screen and (max-width : 440px) {
+    .card-wrapper{
+        width: 25%;
+        margin: 15px;
+    }
+    .form-side-wrapper{
+        display: none;
+    }
+    .form-wrapper{
+        width: 100%;
+    }
+
+}
+

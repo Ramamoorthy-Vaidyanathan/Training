@@ -1,5 +1,4 @@
 const basicGetController = (request, response) => {
-    console.log(request.query)
     response(`
     <!DOCTYPE html>
 <html lang="en">

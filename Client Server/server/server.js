@@ -34,6 +34,7 @@ server.register(
 
 const cookieValidation = async (request, session, callback) => {
     const User = await Model.user.findOne({ where: { id: session.id } });
+    request.user = User;
     User ? callback(null, true) : callback(null, false)
 }
 

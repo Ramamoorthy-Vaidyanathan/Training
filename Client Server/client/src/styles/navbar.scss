@@ -1,0 +1,10 @@
+@import "constants";
+
+
+.navbar-wrapper{
+    width: 100%;
+    height: 70px;
+    background-color: $primary-color;
+    position: fixed;
+    top: 0;
+}

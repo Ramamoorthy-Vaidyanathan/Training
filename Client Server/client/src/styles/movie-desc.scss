@@ -1,0 +1,31 @@
+.movie-desc-wrapper{
+    width: 90%;
+    margin: 7% auto;
+    height: 50vh;
+    position: relative;
+
+
+
+}
+
+.desc-img-wrapper{
+    width: 10%;
+    // height: 65%;
+    // background-color: red;
+    margin: 2% auto;
+    margin-bottom: -12%;
+    img{
+        border-radius: 10%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.desc-movie{
+    background-color: cyan;
+    width: 90%;
+    margin: 0 auto;
+    padding-top: 12%;
+    height: 50vh;
+
+}

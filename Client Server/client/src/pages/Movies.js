@@ -2,7 +2,9 @@ import React from 'react'
 import Card from '../components/Card'
 import { useNavigate } from "react-router-dom"
 import Cookie from 'js-cookie'
+import { BiLogOutCircle } from 'react-icons/bi'
 import { getAllMovies, deleteMovie } from "../middleware/movie-api"
+import { logout } from '../middleware/user-api';
 import Model from '../components/Model'
 
 export default function Movies() {
@@ -30,11 +32,18 @@ export default function Movies() {
   }
 
   const deleteHandler = async (id, name) => {
-    if(window.confirm(`Are you sure you want to delete ${name}?`)){
+    if (window.confirm(`Are you sure you want to delete ${name}?`)) {
       const result = await deleteMovie(id)
-      if(result){
+      if (result) {
         getData()
       }
+    }
+  }
+
+  const logoutHandler = async () => {
+    if(window.confirm("Are you sure you want to logout?")){
+      await logout()
+      window.location.href = "http://localhost:8080/login"
     }
   }
 
@@ -54,6 +63,9 @@ export default function Movies() {
         }
       </div>
       {showModel && <Model setShowModel={setShowModel} movieId={movieId} setMovieId={setMovieId} />}
+      <div className='logout-wrapper' title='Logout'>
+        <BiLogOutCircle onClick={logoutHandler} />
+      </div>
     </div>
 
   )

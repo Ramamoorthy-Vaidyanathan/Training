@@ -37,4 +37,28 @@ const loginUser = async (request, response) => {
     })
 }
 
-module.exports = { registerUser, loginUser }
+const logoutUser = async (request, response) => {
+    const User = await Models.user.findOne({where: {id: request.state.cid.id}});
+    if(User){
+        request.cookieAuth.clear();
+        response({
+            message: "Logged out Successfully!!!"
+        })
+    }
+    response({
+        errror: "Error!!! Can't able to logout"
+    })
+}
+
+
+
+const deleteAccount = async (request, response) => {
+    const payload = request.payload;
+    const User = await Models.user.destroy({where: {id: request.params.accId}});
+    response("Account deleted Successfully!!!1")
+}
+
+
+
+
+module.exports = { registerUser, loginUser, deleteAccount, logoutUser }

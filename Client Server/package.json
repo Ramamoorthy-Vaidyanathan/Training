@@ -9,7 +9,7 @@
     "start-client": "webpack-dev-server",
     "start-server": "nodemon --inspect --watch server server/server.js",
     "build": "webpack build",
-    "start": "npm-run-all start-client start-server"
+    "start": "npm-run-all --parallel start-client start-server"
   },
   "author": "Ramamoorthy Vaidyanathan",
   "license": "ISC",

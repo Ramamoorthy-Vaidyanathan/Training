@@ -1,4 +1,4 @@
-const { registerUser, loginUser} = require('../controllers/usercontroller')
+const { registerUser, loginUser, logoutUser, deleteAccount} = require('../controllers/usercontroller')
 const { loginValidation } = require('../validation/defaultvalidation')
 
 
@@ -22,5 +22,15 @@ module.exports = [
             },
             auth: false
         }
+    },
+    {
+        method: 'POST',
+        path: '/logout',
+        handler: logoutUser,
+    },
+    {
+        method: 'DELETE',
+        path: '/delete-account/{accId}',
+        handler: deleteAccount,
     }
 ]

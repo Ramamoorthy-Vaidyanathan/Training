@@ -7,6 +7,13 @@ export const login = async (credentials) => {
     return response
 }
 
+export const logout = async () => {
+    const response = await axiosConfig.post('/logout', {})
+                                .then(res => res.data)
+                                .catch(err => err)
+    return response
+}
+
 export const registerUser = async (userDetails) => {
     const response = await axiosConfig.post('/register', userDetails)
                                 .then(res => res.data)

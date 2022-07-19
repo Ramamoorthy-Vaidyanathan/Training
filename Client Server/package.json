@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack-dev-server --progress",
     "start-client": "webpack-dev-server",
-    "start-server": "nodemon --inspect --watch server server/server.js",
+    "start-server": "nodemon server/server.js",
     "build": "webpack build",
     "start": "npm-run-all --parallel start-client start-server"
   },
@@ -29,8 +29,10 @@
     "webpack-dev-server": "^4.9.3"
   },
   "dependencies": {
+    "@elastic/elasticsearch": "^8.2.1",
     "axios": "^0.27.2",
     "bcrypt": "^5.0.1",
+    "elasticsearch": "^16.7.3",
     "hapi": "^16.0.0",
     "hapi-auth-basic": "^4.2.0",
     "hapi-auth-cookie": "^7.0.0",
@@ -48,6 +50,7 @@
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.2",
     "react-router-dom": "^6.3.0",
+    "redis": "^4.2.0",
     "redux": "^4.2.0",
     "sequelize": "^6.21.0"
   }

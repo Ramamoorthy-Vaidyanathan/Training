@@ -1,5 +1,5 @@
-const { postMovies, getAllMovies, getMovieById, updateMovie, deleteMovie } = require('../controllers/moviecontroller')
-
+const { postMovies, getAllMovies, getMovieById, updateMovie, deleteMovie, getAllCars } = require('../controllers/moviecontroller')
+const { getAllEmployees } = require('../controllers/employeecontroller')
 
 module.exports = [
     {

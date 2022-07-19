@@ -22,7 +22,6 @@ export default function Movies() {
     if (Cookie.get('cid') == undefined) {
       navigate('/login')
     }
-    console.log(decodeURIComponent(Cookie.get('cid')))
     getData()
   }, [showModel])
 
@@ -57,9 +56,9 @@ export default function Movies() {
       </div>
       <div className='d-flex'>
         {
-          movieList.length > 0 && movieList.map(item => (
+          movieList.length > 0 ? movieList.map(item => (
             <Card {...item} editHandler={editHandler} deleteHandler={deleteHandler} />
-          ))
+          )) : <h1 style={{width: 'max-content', margin: '30px auto'}}>Add Movies to your dashboard by clicking on "+Add Movie" button</h1>
         }
       </div>
       {showModel && <Model setShowModel={setShowModel} movieId={movieId} setMovieId={setMovieId} />}

@@ -10,6 +10,7 @@ import Home from './pages/Home'
 import Movies from './pages/Movies'
 import Navbar from './components/Navbar'
 import MovieDescription from './pages/MovieDescription'
+import EmployeeList from './pages/EmployeeList';
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/employeelist' element={<EmployeeList />} />
           <Route path='/movielist' element={<Movies />} />
             <Route path='/movielist/:id' element={ <MovieDescription/> } />
           <Route path='/login' element={<Login />} />

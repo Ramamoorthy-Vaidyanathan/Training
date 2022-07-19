@@ -2,6 +2,8 @@ const Models = require('../models/index')
 const bcrypt = require('bcrypt')
 const { Op } = require('../config/dbConfig')
 const jwt = require('jsonwebtoken')
+const { redisClient } = require('../config/redisConfig')
+
 
 
 const registerUser = async (request, response) => {
@@ -29,6 +31,7 @@ const loginUser = async (request, response) => {
         if(bcrypt.compareSync(payload.password, User.password)){
             request.cookieAuth.set(User);
             // var token = jwt.sign({name: "Ramamoorthy Vaidyanathan"}, 'NeverShareYourSecret');
+            // response.cookie('name', 'Auth')
             response(User)
         }
     }
@@ -41,6 +44,7 @@ const logoutUser = async (request, response) => {
     const User = await Models.user.findOne({where: {id: request.state.cid.id}});
     if(User){
         request.cookieAuth.clear();
+        redisClient.flushAll();
         response({
             message: "Logged out Successfully!!!"
         })
@@ -54,7 +58,9 @@ const logoutUser = async (request, response) => {
 
 const deleteAccount = async (request, response) => {
     const payload = request.payload;
+    const movie = await Models.movie.destroy({where: {UserId: request.params.accId}})
     const User = await Models.user.destroy({where: {id: request.params.accId}});
+    request.cookieAuth.clear();
     response("Account deleted Successfully!!!1")
 }
 

@@ -11,6 +11,7 @@ export const getMovieById = async (id) => {
     const response = await axiosConfig.get(`/movies/${id}`)
                                 .then(res => res.data)
                                 .catch(err => err)
+    console.log(response)
     return response;
 }
 

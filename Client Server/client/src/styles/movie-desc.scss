@@ -22,10 +22,21 @@
 }
 
 .desc-movie{
-    background-color: cyan;
+    background-color: white;
     width: 90%;
     margin: 0 auto;
     padding-top: 12%;
     height: 50vh;
-
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    h1{
+        margin: 0;
+        margin: 4px;
+    }
+    p{
+        margin: 1px;
+        color: rgba(0, 0, 0, 0.742);
+    }
 }

@@ -9,6 +9,22 @@ body{
     font-family: 'Times New Roman', Times, serif;
 }
 
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+
 .app-wrapper{
     border: 0.5px solid black;
     padding: 10px 20px;
@@ -158,6 +174,19 @@ button{
     bottom: 50px;
     right: 50px;
 
+}
+
+.search-wrapper{
+    display: flex;
+    input{
+        background-color: transparent;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+    button{
+        width: 50%;
+        border-radius: 10px;
+    }
 }
 
 

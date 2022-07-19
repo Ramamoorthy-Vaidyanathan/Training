@@ -2,12 +2,15 @@
 const Hapi = require('hapi');
 const path = require('path');
 const Inert = require('inert');
+
 // const authCookie = require('hapi-auth-cookie');
 // const authJwt = require('hapi-auth-jwt2');
 
 const routes = require('./routes/index')
 const { sequelize } = require('./config/dbConfig')
 const Model = require('./models/index')
+const { redisClient } = require('./config/redisConfig')
+const { elasticClient } = require('./config/elasticConfig')
 
 
 //Create a new instance of hai server
@@ -21,6 +24,8 @@ server.connection({
         cors: true
     }
 })
+
+
 
 //Create Strategy
 server.register(
@@ -66,6 +71,7 @@ async function connectDB() {
     try {
         await sequelize.authenticate();
         console.log('Connection has been established successfully.');
+        redisClient.set("name", "Ram")
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }

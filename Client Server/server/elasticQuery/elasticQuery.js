@@ -13,7 +13,10 @@ const deleteQuery = async (elindex, elid) => {
 const createIndex = async (elindex, inputObj) => {
     const response = await elasticClient.index({
         index: elindex,
+        type: '_doc',
         body: inputObj
+    }, function(err, res){
+        console.log(err)
     })
     return response
 }
@@ -38,7 +41,8 @@ const createBulkIndex = async (body) => {
 
 const getQuery = async (elindex) => {
     const getAll = await elasticClient.search({
-        index: elindex
+        index: elindex,
+        size: 100
     })
     return getAll
 }
@@ -56,18 +60,14 @@ const updateQuery = async (elindex, elid, inputObj) => {
 }
 
 const searchQuery = async (elindex, keyword) => {
+    console.log(elindex, keyword)
     const searchResult = await elasticClient.search({
         index: elindex,
+        type: "_doc",
         body: {
             query: {
                 match: {
-                    name: keyword
-                }
-            },
-            suggest: {
-                gotsuggest: {
-                    text: keyword,
-                    term: { field: 'name'}
+                    last_name: keyword
                 }
             }
         }
@@ -75,4 +75,18 @@ const searchQuery = async (elindex, keyword) => {
     return searchResult
 }
 
-module.exports = { createIndex, createBulkIndex, getQuery, searchQuery, updateQuery,  deleteQuery}
+const multiSearch = async (elindex, keyword) => {
+    const result = await elasticClient.msearch({
+        body: [
+          { index: 'employee' },
+          { query: { match: { first_name: keyword } } },
+    
+          { index: 'employee' },
+          { query: { match: { last_name: keyword } } }
+        ]
+      })
+
+      return result
+}
+
+module.exports = { createIndex, createBulkIndex, getQuery, searchQuery, updateQuery,  deleteQuery, multiSearch}

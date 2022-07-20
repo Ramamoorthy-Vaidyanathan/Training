@@ -11,8 +11,8 @@ function EmployeeList() {
   const [employeeList, setEmployeeList] = React.useState([])
   const [searchText, setSearchText] = React.useState('')
 
-  const getData = async () => {
-    const result = await getAllEmployee();
+  const getData = async (param) => {
+    const result = await getAllEmployee(param);
     setEmployeeList(result)
   }
 
@@ -20,11 +20,12 @@ function EmployeeList() {
     if (Cookie.get('cid') == undefined) {
       navigate('/login')
     }
-    getData()
+    getData('')
   }, [])
 
   const searchHandler = () => {
     console.log(searchText)
+    getData(searchText)
   }
 
   // const changeHandler = (event) => {
@@ -51,12 +52,12 @@ function EmployeeList() {
         </tr>
         {
           employeeList.length > 0 && employeeList.map(employee => (
-            <tr key={employee.id}>
-              <td>{employee.id}</td>
-              <td>{employee.first_name}</td>
-              <td>{employee.last_name}</td>
-              <td>{employee.email}</td>
-              <td>{employee.gender}</td>
+            <tr key={employee._id}>
+              <td>{employee._id}</td>
+              <td>{employee._source.first_name}</td>
+              <td>{employee._source.last_name}</td>
+              <td>{employee._source.email}</td>
+              <td>{employee._source.gender}</td>
             </tr>
           ))
         }

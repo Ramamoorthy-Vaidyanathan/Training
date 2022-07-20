@@ -24,7 +24,7 @@
 .desc-movie{
     background-color: white;
     width: 90%;
-    margin: 0 auto;
+    margin: 0px auto;
     padding-top: 12%;
     height: 50vh;
     border-radius: 20px;
@@ -38,5 +38,13 @@
     p{
         margin: 1px;
         color: rgba(0, 0, 0, 0.742);
+    }
+}
+
+.theater-wrapper{
+    width: 70%;
+    margin: 20px auto;
+    button{
+        margin-left: 0;
     }
 }

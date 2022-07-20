@@ -11,6 +11,7 @@ const { sequelize } = require('./config/dbConfig')
 const Model = require('./models/index')
 const { redisClient } = require('./config/redisConfig')
 const { elasticClient } = require('./config/elasticConfig')
+// require('./bullmq/bull')
 
 
 //Create a new instance of hai server

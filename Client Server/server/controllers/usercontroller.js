@@ -54,6 +54,14 @@ const logoutUser = async (request, response) => {
     })
 }
 
+const getAllMail = async (request, response) => {
+    const allMails = await Models.user.findAll({
+        attributes: ['email']
+    })
+    const emails = allMails.map(item => item.dataValues.email)
+    return emails
+}
+
 
 
 const deleteAccount = async (request, response) => {
@@ -67,4 +75,6 @@ const deleteAccount = async (request, response) => {
 
 
 
-module.exports = { registerUser, loginUser, deleteAccount, logoutUser }
+
+
+module.exports = { registerUser, loginUser, deleteAccount, logoutUser, getAllMail }

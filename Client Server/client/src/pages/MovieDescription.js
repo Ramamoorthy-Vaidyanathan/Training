@@ -38,8 +38,29 @@ export default function MovieDescription() {
             <p>{movieDetail.gener}</p>
             <p>{movieDetail.run_time}</p>
             <p>{movieDetail.year}</p>
+            <div className='theater-wrapper'>
+              <h1>Running In</h1>
+              <table>
+                <tr>
+                  <th>Theater Name</th>
+                  <th>Area</th>
+                  <th>Action</th>
+                </tr>
+                {
+                  movieDetail.Theaters.map(theater => (
+                    <tr key={theater.id}>
+                      <td>{ theater.theater_name }</td>
+                      <td>{ theater.area }</td>
+                      <td><button>Book Now</button></td>
+                    </tr>
+                  ))
 
+                }
+
+              </table>
+            </div>
           </div>
+
         </div>
       }
 

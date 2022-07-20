@@ -1,15 +1,27 @@
 const Models = require('../models/index');
 const { Op } = require('../config/dbConfig')
-const { redisClient } = require('../config/redisConfig')
+const { redisClient } = require('../config/redisConfig');
+const { emailQueue, sendEmail } = require('../bullmq/emailQueue');
+const { getAllMail } = require('../controllers/usercontroller')
 
 const postMovies = async (request, response) => {
-    const { id:userId } = request.user.dataValues;
-    var payload = request.payload;
-    const UserId = request.state.cid.id;
-    payload = { ...payload, UserId }
-    const result = await Models.movie.create(payload)
-    redisClient.del(`movie?${userId}`)
-    response(result);
+    try{
+        const { id:userId, email} = request.user.dataValues;
+        var payload = request.payload;
+        const UserId = request.state.cid.id;
+        payload = { ...payload, UserId }
+        const result = await Models.movie.create(payload)
+        const allMails = await getAllMail()
+        console.log(allMails);
+        await sendEmail({email, detail: payload, allMails})
+        // emailQueue.add(payload)
+        redisClient.del(`movie?${userId}`)
+        response(result);
+    }
+    catch(err){
+        console.log("Error", err)
+    }
+    
 }
 
 const getAllMovies = async (request, response) => {
@@ -43,7 +55,8 @@ const getMovieById = async (request, response) => {
         where: {
             UserId: request.state.cid.id,
             id: request.params.movieId
-        }
+        },
+        include: [Models.theater]
     });
     redisClient.del(`movie?${userId}`)
     response(result);
